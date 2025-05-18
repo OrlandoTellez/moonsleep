@@ -10,3 +10,13 @@
     align-items: center;
     gap: 10px;
 }
+
+.user{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #5a4b89;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 100px;
+}
