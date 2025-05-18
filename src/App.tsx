@@ -1,11 +1,14 @@
-import './App.css'
+import { Header } from './components/Header'
+import styles from './App.module.css'
 
 function App() {
   
 
   return (
     <>
-      <h1>MoonSleep</h1>
+      <main className={styles.main}>
+        <Header />
+      </main>
     </>
   )
 }

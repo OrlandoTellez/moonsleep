@@ -1,0 +1,7 @@
+.main{
+    width: 100%;
+    max-width: 600px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto;
+}
