@@ -1,16 +1,12 @@
-import { Header } from './components/Header'
-import { SleepTracker } from './sections/SleepTracker'
-import styles from './App.module.css'
-import { Stats } from './sections/Stats'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { AppRoutes } from './routes/AppRoutes'
 
 function App() {
   return (
     <>
-      <main className={styles.main}>
-        <Header />
-        <SleepTracker />
-        <Stats />
-      </main>
+      <Router>
+        <AppRoutes />
+      </Router>
     </>
   )
 }
