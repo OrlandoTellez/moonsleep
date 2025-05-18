@@ -1,9 +1,0 @@
-.main{
-    width: 100%;
-    max-width: 500px;
-    display: grid;
-    place-items: center;
-    margin: 0 auto;
-    padding: 40px 20px;
-    gap: 40px;
-}

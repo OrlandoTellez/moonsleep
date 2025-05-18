@@ -1,12 +1,12 @@
 import { Header } from '../components/Header'
 import { SleepTracker } from '../sections/SleepTracker'
-import styles from '../App.module.css'
 import { Stats } from '../sections/Stats'
+import '../index.css'
 
 export const Home = () => {
   return (
     <>
-        <main className={styles.main}>
+        <main>
           <Header />
           <SleepTracker />
           <Stats />
