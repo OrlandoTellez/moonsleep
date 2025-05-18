@@ -3,8 +3,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 35px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(4px) saturate(100%);
     border-radius: 10px;
+    text-align: center;
+    gap: 10px;
 }
