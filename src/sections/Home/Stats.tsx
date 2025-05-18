@@ -1,9 +1,9 @@
-import { CardStats } from "../components/CardStats"
-import { Glass } from "../components/Glass"
-import time from "../assets/time.svg"
-import quality from "../assets/quality.svg"
+import { CardStats } from "../../components/CardStats"
+import { Glass } from "../../components/Glass"
+import time from "../../assets/time.svg"
+import quality from "../../assets/quality.svg"
 import styles from "./Stats.module.css"
-import { CardRecentSleep } from "../components/CardRecentSleep"
+import { CardRecentSleep } from "../../components/CardRecentSleep"
 
 export const Stats = () => {
     const stats = [

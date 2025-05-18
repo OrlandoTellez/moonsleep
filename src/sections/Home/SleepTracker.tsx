@@ -1,5 +1,5 @@
-import { Glass } from '../components/Glass';
-import logo from '../assets/logo.svg';
+import { Glass } from '../../components/Glass';
+import logo from '../../assets/logo.svg';
 import styles from './SleepTracker.module.css';
 
 export const SleepTracker = () => {

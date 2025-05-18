@@ -1,6 +1,6 @@
 import { Header } from '../components/Header'
-import { SleepTracker } from '../sections/SleepTracker'
-import { Stats } from '../sections/Stats'
+import { SleepTracker } from '../sections/Home/SleepTracker'
+import { Stats } from '../sections/Home/Stats'
 import '../index.css'
 
 export const Home = () => {
