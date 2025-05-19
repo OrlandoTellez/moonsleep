@@ -1,6 +1,8 @@
 .icon{
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 100px;
     gap: 10px;
     background: #5a4b89;
     padding: 10px;
