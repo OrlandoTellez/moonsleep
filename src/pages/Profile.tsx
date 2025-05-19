@@ -1,8 +1,10 @@
 import { InfoProfile } from "../sections/Profile/InfoProfile"
-import arroyLeft from "../assets/arrowLeft.svg"
 import { Link } from "react-router-dom"
 import styles from "./Profile.module.css"
+import arroyLeft from "../assets/arrowLeft.svg"
 import "../index.css"
+import { OptionsConfiguration } from "../sections/Profile/OptionsConfiguration"
+import { ButtonsAutentication } from "../components/ButtonsAutentication"
 
 export const Profile = () => {
   return (
@@ -16,6 +18,10 @@ export const Profile = () => {
           </nav>
           <div>
             <InfoProfile />
+          </div>
+          <OptionsConfiguration />
+          <div className={styles.buttons}>
+            <ButtonsAutentication />
           </div>
         </main>
     </>

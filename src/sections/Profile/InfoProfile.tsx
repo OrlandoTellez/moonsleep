@@ -1,11 +1,11 @@
 import { Icon } from '../../components/Icon'
-import { Button } from '../../components/Button'
 import { useAuth0 } from '@auth0/auth0-react'
 import userSvg from '../../assets/user.svg'
 import styles from './InfoProfile.module.css'
 
+
 export const InfoProfile = () => {
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0()
+  const { isAuthenticated, user } = useAuth0()
   return (
     <>
         <div className={styles.container}>
@@ -25,22 +25,7 @@ export const InfoProfile = () => {
               )
             }
             
-
-            <div>
-              {
-                isAuthenticated ? (
-                  <Button
-                  text='Cerrar sesión'
-                  onClick={() => logout()}
-                  />
-                ) : (
-                  <Button 
-                  text='Iniciar sesión'
-                  onClick={() => loginWithRedirect()}
-                  />
-                )
-              }
-            </div>
+            
         </div>
     </>
   )
