@@ -19,10 +19,11 @@ export const SleepTracker = () => {
   // Estado para la hora de inicio y fin del sueño
   const [startTime, setStartTime] = useState<Date | null>(null)
 
-  // Estado para el registro del sueño
+  // Estado para almacenar los registros de sueño
   const [sleepRecords, setSleepRecords] = useState<sleepRecords[]>([])
 
-
+  console.log(sleepRecords)
+  
   const handleStart = () => {
     const now = new Date()
     setStartTime(now)
