@@ -9,10 +9,21 @@ export const InfoProfile = () => {
   return (
     <>
         <div className={styles.container}>
-            <Icon 
-            icon={userSvg} 
-            alt='user icon'
-            />      
+            {
+              isAuthenticated ? (
+                <Icon 
+                icon={user?.picture ?? userSvg} 
+                alt='user icon'
+                showUserImage={true}
+                /> 
+              ) : (
+                <Icon
+                  icon={userSvg}
+                  alt='user'
+                />
+              )
+            }
+                 
             {
               isAuthenticated ? (
                 <article>
