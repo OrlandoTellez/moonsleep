@@ -20,6 +20,7 @@ export const SleepTracker = () => {
   const [startTime, setStartTime] = useState<Date | null>(null)
 
   // Estado para el registro del sueño
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [sleepRecords, setSleepRecords] = useState<sleepRecords[]>([])
 
   const handleStart = () => {
