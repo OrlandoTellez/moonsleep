@@ -1,50 +1,77 @@
-import { Glass } from '../../components/Glass'
-import logo from '../../assets/logo.svg'
-import { Icon } from '../../components/Icon'
-import { Button } from '../../components/Button'
-import { toast } from "@pheralb/toast"
-import { useState } from 'react'
-import styles from './SleepTracker.module.css'
+import { Glass } from "../../components/Glass";
+import logo from "../../assets/logo.svg";
+import { Icon } from "../../components/Icon";
+import { Button } from "../../components/Button";
+import { toast } from "@pheralb/toast";
+import { useState } from "react";
+import { useEffect } from "react";
+import styles from "./SleepTracker.module.css";
 
 type sleepRecords = {
-  start: Date
-  end: Date
-  durationHours: number
-}
+  start: Date;
+  end: Date;
+  durationHours: number;
+};
 
 export const SleepTracker = () => {
   // Estado para el seguimiento del sueño
-  const [isTracking, setIsTracking] = useState(false)
+  const [isTracking, setIsTracking] = useState(false);
 
   // Estado para la hora de inicio y fin del sueño
-  const [startTime, setStartTime] = useState<Date | null>(null)
+  const [startTime, setStartTime] = useState<Date | null>(null);
 
   // Estado para almacenar los registros de sueño
-  const [sleepRecords, setSleepRecords] = useState<sleepRecords[]>([])
+  const [sleepRecords, setSleepRecords] = useState<sleepRecords[]>([]);
 
-  console.log(sleepRecords)
-  
+  // Estado para almacenar la duración del sueño
+  const [duration, setDuration] = useState<number>(0);
+
+  useEffect(() => {
+    let interval: number
+
+    if (isTracking && startTime) {
+      interval = setInterval(() => {
+        const now = new Date();
+        const diff = Math.floor((now.getTime() - startTime.getTime()) / 1000);
+        setDuration(diff);
+      }, 1000);
+    } else {
+      setDuration(0); // Reiniciar cuando se detiene
+    }
+
+    return () => clearInterval(interval)
+  }, [isTracking, startTime]);
+
+  console.log(sleepRecords);
+
+  const formatTime = (seconds: number) => {
+    const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0')
+    const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0')
+    const secs = String(seconds % 60).padStart(2, '0')
+    return `${hrs}:${mins}:${secs}`
+  }
+
   const handleStart = () => {
-    const now = new Date()
-    setStartTime(now)
-    setIsTracking(true)
+    const now = new Date();
+    setStartTime(now);
+    setIsTracking(true);
     toast.success({
       text: "Tracking started!",
       description: `Sleep time started at ${now.toLocaleTimeString()}`,
-    })
-  }
+    });
+  };
 
   const handleStop = () => {
-    if (!startTime) return
+    if (!startTime) return;
 
-    const endTime = new Date()
-    const diff = (endTime.getTime() - startTime.getTime()) / 1000 // en segundos
+    const endTime = new Date();
+    const diff = (endTime.getTime() - startTime.getTime()) / 1000; // en segundos
 
-    const hours = Math.floor(diff / 3600)
-    const minutes = Math.floor((diff % 3600) / 60)
-    const seconds = Math.floor(diff % 60)
+    const hours = Math.floor(diff / 3600);
+    const minutes = Math.floor((diff % 3600) / 60);
+    const seconds = Math.floor(diff % 60);
 
-    const formattedDuration = `${hours}h ${minutes}min ${seconds}s`
+    const formattedDuration = `${hours}h ${minutes}min ${seconds}s`;
 
     setSleepRecords((prevRecords) => [
       ...prevRecords,
@@ -53,34 +80,34 @@ export const SleepTracker = () => {
         end: endTime,
         durationHours: hours,
       },
-    ])
+    ]);
 
-    setIsTracking(false)
-    setStartTime(null)
+    setIsTracking(false);
+    setStartTime(null);
 
-     toast.success({
+    toast.success({
       text: "Tracking stopped!",
       description: `You slept ${formattedDuration}.`,
-    })
-  }
+    });
+  };
 
   return (
     <>
-        <Glass>
-            <div className={styles.container}>    
-                <Icon
-                icon={logo} 
-                alt='logo'
-                />
-                <article className={styles.article}>
-                    <h2>Track your sleep</h2>
-                    <Button
-                    text={isTracking ? 'Stop Tracking' : 'Start Tracking'}
-                    onClick={isTracking ? handleStop : handleStart}
-                    />
-                </article>
+      <Glass>
+        <div className={styles.container}>
+          <Icon icon={logo} alt="logo" />
+          <article className={styles.article}>
+            <h2>Track your sleep</h2>
+            <div>
+              <span>{formatTime(duration)}</span>
             </div>
-        </Glass>
+            <Button
+              text={isTracking ? "Stop Tracking" : "Start Tracking"}
+              onClick={isTracking ? handleStop : handleStart}
+            />
+          </article>
+        </div>
+      </Glass>
     </>
-  )
-}
+  );
+};
