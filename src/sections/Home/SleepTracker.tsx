@@ -5,6 +5,7 @@ import { Button } from "../../components/Button";
 import { toast } from "@pheralb/toast";
 import { useState } from "react";
 import { useSleepTimer } from "../../hooks/useSleepTimer";
+import time from "../../assets/time.svg";
 import styles from "./SleepTracker.module.css";
 
 type sleepRecords = {
@@ -29,11 +30,11 @@ export const SleepTracker = () => {
   console.log(sleepRecords);
 
   const formatTime = (seconds: number) => {
-    const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0')
-    const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0')
-    const secs = String(seconds % 60).padStart(2, '0')
-    return `${hrs}:${mins}:${secs}`
-  }
+    const hrs = String(Math.floor(seconds / 3600)).padStart(2, "0");
+    const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
+    const secs = String(seconds % 60).padStart(2, "0");
+    return `${hrs}:${mins}:${secs}`;
+  };
 
   const handleStart = () => {
     const now = new Date();
@@ -44,6 +45,7 @@ export const SleepTracker = () => {
       description: `Sleep time started at ${now.toLocaleTimeString()}`,
     });
   };
+
 
   const handleStop = () => {
     if (!startTime) return;
@@ -83,7 +85,19 @@ export const SleepTracker = () => {
           <article className={styles.article}>
             <h2>Track your sleep</h2>
             <div>
-              <span>{formatTime(duration)}</span>
+              {isTracking && (
+                <span className={styles.counter}>
+                  <span>{formatTime(duration)}</span>
+                  {startTime && (
+                    <span className={styles.atTime}>
+                      <div>
+                          <img src={time} alt="icon stats" />
+                      </div>
+                      Started at {startTime.toLocaleTimeString()}
+                    </span>
+                  )}
+                </span>
+              )}
             </div>
             <Button
               text={isTracking ? "Stop Tracking" : "Start Tracking"}
