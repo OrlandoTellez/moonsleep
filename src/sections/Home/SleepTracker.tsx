@@ -4,7 +4,7 @@ import { Icon } from "../../components/Icon";
 import { Button } from "../../components/Button";
 import { toast } from "@pheralb/toast";
 import { useState } from "react";
-import { useEffect } from "react";
+import { useSleepTimer } from "../../hooks/useSleepTimer";
 import styles from "./SleepTracker.module.css";
 
 type sleepRecords = {
@@ -24,23 +24,7 @@ export const SleepTracker = () => {
   const [sleepRecords, setSleepRecords] = useState<sleepRecords[]>([]);
 
   // Estado para almacenar la duración del sueño
-  const [duration, setDuration] = useState<number>(0);
-
-  useEffect(() => {
-    let interval: number
-
-    if (isTracking && startTime) {
-      interval = setInterval(() => {
-        const now = new Date();
-        const diff = Math.floor((now.getTime() - startTime.getTime()) / 1000);
-        setDuration(diff);
-      }, 1000);
-    } else {
-      setDuration(0); // Reiniciar cuando se detiene
-    }
-
-    return () => clearInterval(interval)
-  }, [isTracking, startTime]);
+  const duration = useSleepTimer(isTracking, startTime);
 
   console.log(sleepRecords);
 
